@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -52,13 +53,20 @@ public class AuthorHelper {
 
 	public Author searchAuthorByName(String firstName, String lastName) {
 	    EntityManager manager = factory.createEntityManager();
-	    TypedQuery<Author> query = manager.createQuery("SELECT i FROM author AS i WHERE i.firstName = :firstName AND i.lastName = :lastName", Author.class);
+	    TypedQuery<Author> query = manager.createQuery("SELECT a FROM author a WHERE a.firstName = :firstName AND a.lastName = :lastName", Author.class);
 	    query.setParameter("firstName", firstName);
-	    query.setParameter("lastName", lastName); 
-	    Author dbEntity = query.getSingleResult();
-	    manager.close();
-	    return dbEntity;
+	    query.setParameter("lastName", lastName);
 
+	    try {
+	        // Attempts to retrieve the author
+	        Author dbEntity = query.getSingleResult();
+	        return dbEntity;
+	    } catch (NoResultException e) {
+	        // Handles the case where no author was found (e.g., return null)
+	        return null;
+	    } finally {
+	        manager.close();
+	    }
 	}
 
 
