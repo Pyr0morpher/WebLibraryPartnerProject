@@ -21,8 +21,7 @@ public class Author {
 	private String lastName;
 	
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	
-	private List<Book> book;
+	private List<Book> books;
 	
 	public Author() {
 		super();
