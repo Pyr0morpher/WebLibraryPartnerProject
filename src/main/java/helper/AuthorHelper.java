@@ -30,6 +30,7 @@ public class AuthorHelper {
 		manager.close();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Author> showAllAuthors() {
 		EntityManager manager = factory.createEntityManager();
 		manager.clear();

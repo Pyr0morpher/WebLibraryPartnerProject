@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import helper.BookHelper;
+import model.Book;
+
 /**
  * Servlet implementation class DeleteBook
  */
-@WebServlet("/DeleteBook")
+@WebServlet("/deleteBook")
 public class DeleteBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,20 +25,17 @@ public class DeleteBook extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		BookHelper helper = new BookHelper();
+		String title = request.getParameter("title");
+		Book deleteable = helper.searchBookByTitle(title);
+		helper.delete(deleteable);
+		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+	
 	}
 
 }

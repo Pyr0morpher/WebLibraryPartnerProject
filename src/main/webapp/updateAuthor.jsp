@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update Author</title>
+<title>Update an Author</title>
 </head>
 <body>
 

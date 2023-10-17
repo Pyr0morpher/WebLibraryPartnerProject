@@ -31,13 +31,12 @@ public class UpdateAuthor extends HttpServlet {
         String newFirstName = request.getParameter("newFirstName");
         String newLastName = request.getParameter("newLastName");
         
-        // Check if the author with the old first and last name exists
+        // Searches for and updates existing author
         Author existingAuthor = helper.searchAuthorByName(oldFirstName, oldLastName);
         existingAuthor.setFirstName(newFirstName);
         existingAuthor.setLastName(newLastName);
         helper.update(existingAuthor);
    
-
         getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

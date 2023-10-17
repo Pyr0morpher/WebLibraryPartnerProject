@@ -5,24 +5,24 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Authors</title>
+<title>Authors and their Books</title>
 </head>
 <body>
-	List of all Authors and Books:
+	List of all Authors and their Books:
 	<table>
 		<c:forEach items="${requestScope.allAuthors}" var="currentauthor">
 			<tr>
-				<td>${currentauthor.firstName}|</td>
-				<td>${currentauthor.lastName}</td>
+				<td>${currentauthor.lastName}, </td>
+				<td>${currentauthor.firstName}</td>
 
 			</tr>
 			<c:forEach items="${currentauthor.books}" var="currentbook">
 				<tr>
-					<td>${currentbook.title}|</td>
-					<td>${currentbook.publicationDate}|</td>
-					<td>${currentbook.author}</td>
+					<td>${currentbook.title} | </td>
+					<td>${currentbook.publicationDate}</td>
 				</tr>
 			</c:forEach>
+
 		</c:forEach>
 	</table>
 	<br />
