@@ -12,13 +12,13 @@
 	<table>
 		<c:forEach items="${requestScope.allAuthors}" var="currentauthor">
 			<tr>
-				<td>${currentauthor.lastName}, </td>
+				<td>${currentauthor.lastName},</td>
 				<td>${currentauthor.firstName}</td>
 
 			</tr>
 			<c:forEach items="${currentauthor.books}" var="currentbook">
 				<tr>
-					<td>${currentbook.title} | </td>
+					<td>${currentbook.title}|</td>
 					<td>${currentbook.publicationDate}</td>
 				</tr>
 			</c:forEach>

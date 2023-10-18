@@ -13,28 +13,30 @@ import javax.persistence.Table;
 
 import helper.LocalDateAttributeConverter;
 
-
 @Entity(name = "book")
 @Table(name = "book")
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String title;
-    @Convert(converter = LocalDateAttributeConverter.class)
-    private LocalDate publicationDate;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID")
-    private Author author;
+	// Using a converter to store LocalDate as a SQL Date
+	@Convert(converter = LocalDateAttributeConverter.class)
+	private LocalDate publicationDate;
 
+	// Many-to-One relationship with Author
+	@ManyToOne
+	@JoinColumn(name = "AUTHOR_ID", referencedColumnName = "ID")
+	private Author author;
 
-	
+	// Default constructor
 	public Book() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
+	// Parameterized constructor to set 'id', 'title', 'publicationDate', and
+	// 'author'
 	public Book(Long id, String title, LocalDate publicationDate, Author author) {
 		super();
 		this.id = id;
@@ -43,6 +45,7 @@ public class Book {
 		this.author = author;
 	}
 
+	// Getter and Setter methods for 'id'
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +54,7 @@ public class Book {
 		this.id = id;
 	}
 
+	// Getter and Setter methods for 'title'
 	public String getTitle() {
 		return title;
 	}
@@ -59,6 +63,7 @@ public class Book {
 		this.title = title;
 	}
 
+	// Getter and Setter methods for 'publicationDate'
 	public LocalDate getPublicationDate() {
 		return publicationDate;
 	}
@@ -67,6 +72,7 @@ public class Book {
 		this.publicationDate = publicationDate;
 	}
 
+	// Getter and Setter methods for 'author'
 	public Author getAuthor() {
 		return author;
 	}
@@ -75,6 +81,8 @@ public class Book {
 		this.author = author;
 	}
 
+	// Override the 'toString' method to provide a string representation of the Book
+	// object
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", publicationDate=" + publicationDate + ", author=" + author

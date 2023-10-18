@@ -16,26 +16,21 @@ public class BookHelper {
 
 	// method to add book
 	public void add(Book model) {
-	    EntityManager manager = factory.createEntityManager();
-	    Author existingAuthor = authorHelper.searchAuthorByName(model.getAuthor().getFirstName(), model.getAuthor().getLastName());
-	    
-	    if (existingAuthor == null) {
-	        // Author does not exist, so persist it
-	        manager.getTransaction().begin();
-	        manager.persist(model.getAuthor());
-	        manager.getTransaction().commit();
-	    } else {
-	        // Author exists, use the existing author
-	        model.setAuthor(existingAuthor);
-	    }
-	    
-	    // Persist the book
-	    manager.getTransaction().begin();
-	    manager.persist(model);
-	    manager.getTransaction().commit();
-	    manager.close();
-	}
+		EntityManager manager = factory.createEntityManager();
+		Author existingAuthor = authorHelper.searchAuthorByName(model.getAuthor().getFirstName(),
+				model.getAuthor().getLastName());
 
+		if (existingAuthor != null) {
+			// Author already exists, use the existing author
+			model.setAuthor(existingAuthor);
+		}
+
+		// Persist the book
+		manager.getTransaction().begin();
+		manager.persist(model);
+		manager.getTransaction().commit();
+		manager.close();
+	}
 
 	// method to delete Book
 	public void delete(Book model) {

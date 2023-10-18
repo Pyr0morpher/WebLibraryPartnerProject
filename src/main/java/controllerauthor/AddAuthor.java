@@ -15,28 +15,30 @@ import model.Author;
  */
 @WebServlet("/addAuthor")
 public class AddAuthor extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AddAuthor() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Constructor for the AddAuthor servlet.
+     */
+    public AddAuthor() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		Author a = new Author();
-		AuthorHelper helper = new AuthorHelper();
-		a.setFirstName(request.getParameter("firstName"));
-		a.setLastName(request.getParameter("lastName"));
-		helper.add(a);
-		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	}
-
+    /**
+     * Handle HTTP POST requests.
+     * This method is called when the form is submitted to add a new author.
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Author a = new Author();
+        AuthorHelper helper = new AuthorHelper();
+        // Set the first name and last name of the author from the form parameters
+        a.setFirstName(request.getParameter("firstName"));
+        a.setLastName(request.getParameter("lastName"));
+        // Call the helper method to add the author to the database
+        helper.add(a);
+        // Redirect to the index.jsp page after adding the author
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+    }
 }

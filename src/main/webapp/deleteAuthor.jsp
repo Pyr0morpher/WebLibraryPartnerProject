@@ -9,9 +9,10 @@
 <body>
 
 	<form action="deleteAuthor" method="post">
-		Enter first name of Author to delete: <input type="text" name="firstName" size="25">
-		Enter last name of Author to delete: <input type="text" name="lastName"
-			size="25"> <input type="submit" value="Delete" />
+		Enter first name of Author to delete: <input type="text"
+			name="firstName" size="25"> Enter last name of Author to
+		delete: <input type="text" name="lastName" size="25"> <input
+			type="submit" value="Delete" />
 	</form>
 </body>
 </html>

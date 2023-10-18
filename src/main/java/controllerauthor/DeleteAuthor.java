@@ -15,29 +15,31 @@ import model.Author;
  */
 @WebServlet("/deleteAuthor")
 public class DeleteAuthor extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public DeleteAuthor() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * Constructor for the DeleteAuthor servlet.
+     */
+    public DeleteAuthor() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		AuthorHelper helper = new AuthorHelper();
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		Author deleteable = helper.searchAuthorByName(firstName, lastName);
-		helper.delete(deleteable);
-		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-
-	}
-
+    /**
+     * Handle HTTP POST requests.
+     * This method is called when the form is submitted to delete an author.
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        AuthorHelper helper = new AuthorHelper();
+        // Get the first name and last name of the author to be deleted from the request parameters
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        // Search for the author by name and get the author object
+        Author deleteable = helper.searchAuthorByName(firstName, lastName);
+        // Call the helper method to delete the author from the database
+        helper.delete(deleteable);
+        // Redirect to the index.jsp page after deleting the author
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+    }
 }

@@ -16,26 +16,27 @@ import model.Book;
 @WebServlet("/deleteBook")
 public class DeleteBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteBook() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DeleteBook() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		BookHelper helper = new BookHelper();
 		String title = request.getParameter("title");
 		Book deleteable = helper.searchBookByTitle(title);
 		helper.delete(deleteable);
 		getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-	
+
 	}
 
 }

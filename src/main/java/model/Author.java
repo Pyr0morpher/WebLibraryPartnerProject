@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "author")
 public class Author {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String firstName;
 	private String lastName;
@@ -25,13 +25,13 @@ public class Author {
 	@JoinColumn(name = "author_id", referencedColumnName = "id")
 	private List<Book> books;
 
-	
+	// Default constructor initializes the 'books' list
 	public Author() {
 		super();
 		this.books = new ArrayList<>();
-		// TODO Auto-generated constructor stub
 	}
 
+	// Parameterized constructor to set 'id', 'firstName', and 'lastName'
 	public Author(Long id, String firstName, String lastName) {
 		super();
 		this.id = id;
@@ -39,6 +39,7 @@ public class Author {
 		this.lastName = lastName;
 	}
 
+	// Getter and Setter methods for 'id'
 	public Long getId() {
 		return id;
 	}
@@ -47,6 +48,7 @@ public class Author {
 		this.id = id;
 	}
 
+	// Getter and Setter methods for 'firstName'
 	public String getFirstName() {
 		return firstName;
 	}
@@ -55,6 +57,7 @@ public class Author {
 		this.firstName = firstName;
 	}
 
+	// Getter and Setter methods for 'lastName'
 	public String getLastName() {
 		return lastName;
 	}
@@ -62,18 +65,20 @@ public class Author {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
+	// Getter and Setter methods for 'books'
 	public List<Book> getBooks() {
-	    return books;
+		return books;
 	}
-	
+
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+
+	// Override the 'toString' method to provide a string representation of the
+	// Author object
 	@Override
 	public String toString() {
 		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-	
-	
 }
